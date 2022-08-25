@@ -72,7 +72,7 @@ const DATA = [
 
 const Item = ({ item, onPress }) => (
   <TouchableOpacity style={styles.piecesButton} onPress={onPress}>
-    <Text>{item.title}</Text>
+    <Text style={{ color: '#fff' }}>{item.title}</Text>
   </TouchableOpacity>
 );
 
@@ -119,17 +119,17 @@ export default function App() {
 
   useEffect(() => {
     if (count >= 101) {
-      setNotification('Açabiliyorsun hadi yine iyisin :)')
+      setNotification('Açabiliyorsun Bravo :)')
     } else if (count < 101 && count >= 90) {
       setNotification('Az kaldı ha gayret!')
     } else if (count < 90 && count >= 60) {
-      setNotification('Sabırlı ol! Umut fakirin ekmeği!')
-    } else if (count < 60 && count > 20) {
+      setNotification('Sabırlı ol!')
+    } else if (count < 60 && count > 0) {
       setNotification('Bu elin işi zor!')
     } else {
-      setNotification('')
+      setNotification('Asagidan sayilari girebilirsin')
     }
-  }, [count])
+  }, [count, notification])
 
   const resetCount = () => {
     setCount(0)
@@ -139,16 +139,15 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.counterBox}>
-        <Text style={styles.heading}>101 Hesaplayici</Text>
         <Text style={styles.paragraph}>Elinin Toplami</Text>
         <Text style={[styles.paragraph, count < 101 ? styles.red : styles.green]}>{count}</Text>
-        <Text style={[count < 101 ? styles.redNotifySize : styles.greenNotifySize]}>{notification}</Text>
+        <Text style={[count < 101 && count > 0 ? styles.redNotifySize : count == 0 ? styles.zero : styles.greenNotifySize]}>{notification}</Text>
       </View>
       <View style={styles.piecesBox}>
         <View style={styles.piecesBoxHeading}>
-          <Text>Orta Gir</Text>
-          <TouchableOpacity style={styles.piecesBoxHeadingButton} disabled={!enabled} onPress={resetCount}><Text>Sifirla</Text></TouchableOpacity>
-          <TouchableOpacity style={styles.piecesBoxHeadingButton} disabled={!enabled} onPress={undoCounter}><Text>Geri Al</Text></TouchableOpacity>
+          <Text style={{ fontSize: 20 }}>Orta Gir</Text>
+          <TouchableOpacity style={styles.piecesBoxHeadingButton} disabled={!enabled} onPress={resetCount}><Text style={{ color: '#fff' }}>Sifirla</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.piecesBoxHeadingButton} disabled={!enabled} onPress={undoCounter}><Text style={{ color: '#fff' }}>Geri Al</Text></TouchableOpacity>
         </View>
         <View style={styles.pieces}>
           <FlatList
@@ -159,7 +158,7 @@ export default function App() {
           />
         </View>
         <View>
-          <Text>Yan Gir</Text>
+          <Text style={{ fontSize: 20 }}>Yan Gir</Text>
         </View>
         <View style={styles.pieces}>
           <FlatList
@@ -203,6 +202,10 @@ const styles = StyleSheet.create({
     color: 'green',
     fontSize: 38,
   },
+  zero: {
+    color: 'green',
+    fontSize: 18,
+  },
   redNotifySize: {
     color: 'red',
     fontSize: 28,
@@ -212,7 +215,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
   },
   piecesBox: {
-    flex: 2,
+    flex: 3,
     flexDirection: 'column',
     backgroundColor: '#f5f5f5',
     borderRadius: 3,
@@ -222,7 +225,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    alignItems: 'flex-end',
+    alignItems: 'center',
   },
   piecesBoxHeadingButton: {
     backgroundColor: 'red',
