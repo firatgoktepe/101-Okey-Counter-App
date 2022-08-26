@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image, LogBox } from 'react-native';
 import { ViewPropTypes } from 'deprecated-react-native-prop-types';
 import StepModal from "react-native-step-modal";
+import { Confetti } from "native-confetti";
+LogBox.ignoreLogs(["EventEmitter.removeListener"]);
 
 const DATA = [
   {
@@ -143,7 +145,7 @@ export default function App() {
       <Text style={{ fontSize: 25, fontStyle: 'bold', textAlign: 'center' }}>Nasil Kullanilir?</Text>
       <Text></Text>
       <Text></Text>
-      <Text style={{ fontSize: 18, textAlign: 'center' }}>Ilk önce elinizdeki 3'lulerin herbirinin  ortasindaki sayilari giriniz</Text>
+      <Text style={{ fontSize: 18, textAlign: 'center' }}>Ilk önce elinizdeki 3'lulerin herbirinin ortasindaki sayilari giriniz</Text>
       <Text></Text>
       <Text></Text>
     </View>
@@ -153,7 +155,7 @@ export default function App() {
       <Text style={{ fontSize: 25, fontStyle: 'bold', textAlign: 'center' }}>Nasil Kullanilir?</Text>
       <Text></Text>
       <Text></Text>
-      <Text style={{ fontSize: 18, textAlign: 'center' }}>Sonra varsa 3'lulerin yanindaki sayilari (Ör: 4'lu 5'li vb) giriniz</Text>
+      <Text style={{ fontSize: 18, textAlign: 'center' }}>Sonra varsa 3'lulerin yanindaki sayilari (Ör: 4'luler 5'liler vb) giriniz</Text>
       <Text></Text>
       <Text></Text>
     </View>
@@ -165,6 +167,14 @@ export default function App() {
         <View>
           <StepModal stepComponents={[Component1, Component2]} />
         </View>
+        {
+          count >= 101 && (
+            <View style={{ marginRight: 260 }}>
+              <Confetti />
+            </View>
+
+          )
+        }
         <Text style={styles.paragraph}>Elinin Toplami</Text>
         <Text style={[styles.paragraph, count < 101 ? styles.red : styles.green]}>{count}</Text>
         <Text style={[count < 101 && count > 0 ? styles.redNotifySize : count == 0 ? styles.zero : styles.greenNotifySize]}>{notification}</Text>
