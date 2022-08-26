@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image } from 'react-native';
+import { ViewPropTypes } from 'deprecated-react-native-prop-types';
+import StepModal from "react-native-step-modal";
 
 const DATA = [
   {
@@ -136,9 +138,33 @@ export default function App() {
     setButtonValues([])
   }
 
+  let Component1 = (
+    <View>
+      <Text style={{ fontSize: 25, fontStyle: 'bold', textAlign: 'center' }}>Nasil Kullanilir?</Text>
+      <Text></Text>
+      <Text></Text>
+      <Text style={{ fontSize: 18, textAlign: 'center' }}>Ilk önce elinizdeki 3'lulerin herbirinin  ortasindaki sayilari giriniz</Text>
+      <Text></Text>
+      <Text></Text>
+    </View>
+  );
+  let Component2 = (
+    <View>
+      <Text style={{ fontSize: 25, fontStyle: 'bold', textAlign: 'center' }}>Nasil Kullanilir?</Text>
+      <Text></Text>
+      <Text></Text>
+      <Text style={{ fontSize: 18, textAlign: 'center' }}>Sonra varsa 3'lulerin yanindaki sayilari (Ör: 4'lu 5'li vb) giriniz</Text>
+      <Text></Text>
+      <Text></Text>
+    </View>
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.counterBox}>
+        <View>
+          <StepModal stepComponents={[Component1, Component2]} />
+        </View>
         <Text style={styles.paragraph}>Elinin Toplami</Text>
         <Text style={[styles.paragraph, count < 101 ? styles.red : styles.green]}>{count}</Text>
         <Text style={[count < 101 && count > 0 ? styles.redNotifySize : count == 0 ? styles.zero : styles.greenNotifySize]}>{notification}</Text>
