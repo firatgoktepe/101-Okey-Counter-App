@@ -2,6 +2,19 @@
 
 This mobile app is about counting person's pieces in terms of understanding whether he/she is able to reach 101 point to pass next level in 101 okey game
 
+### How to open
+
+1- Firstly download "Expo Go" app into your phone.
+
+-For Android:
+https://play.google.com/store/apps/details?id=host.exp.exponent&hl=tr&gl=US
+
+-For IOS: https://apps.apple.com/us/app/expo-go/id982107779
+
+2- And Then, copy the link < exp://exp.host/@developerfg/101-App > and
+open Expo go app and paste that copied link
+into the section of "Enter URL manually"
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
